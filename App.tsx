@@ -35,12 +35,12 @@ let number = Math.round(Math.random() * 10);
 let count = 0;
 
 const App = () => {
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState('123');
 
   React.useEffect(() => {
     initNumber();
     console.warn('初始化', number);
-  });
+  }, []);
 
   function initNumber() {
     number = Math.round(Math.random() * 10);
@@ -60,12 +60,11 @@ const App = () => {
 
   return (
     <>
-      <StatusBar barStyle="dark-content">
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <TextInput style={styles.input} value={text} onChange={setText}></TextInput>
-        <Button title="猜" onPress={doGuess}></Button>
+        <TextInput value={text} onChangeText={setText} style={styles.input}></TextInput>
+        <Button title='猜' onPress={doGuess}></Button>
       </SafeAreaView>
-      </StatusBar >
     </>
   );
 };
@@ -74,7 +73,10 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 2,
     borderColor: 'black',
-
+    margin: 30,
+    height: 50,
+    fontSize: 20,
+    paddingLeft: 10,
   },
   scrollView: {
     backgroundColor: Colors.lighter,
